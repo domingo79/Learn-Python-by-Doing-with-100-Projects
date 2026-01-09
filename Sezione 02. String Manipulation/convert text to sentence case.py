@@ -6,7 +6,7 @@ import os
 # percorso principale
 script_dir = os.path.dirname(os.path.abspath(__file__))
 # percorso file target
-target_file = os.path.join(script_dir, "example.txt")
+target_file = os.path.join(script_dir, "snowwhite.txt")
 
 with open(target_file) as file:
     text = file.read()  # legge tutto il file e crea una stringa
