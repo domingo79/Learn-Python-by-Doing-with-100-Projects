@@ -1,0 +1,11 @@
+# Ambiente Virtuale
+.venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+# È un modo contratto per dire a Git di ignorare tutti i file che finiscono con .pyc, .pyo o .pyd.
+
+# File di sistema
+.DS_Store
+Thumbs.db
