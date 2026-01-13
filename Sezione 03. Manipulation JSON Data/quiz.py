@@ -1,3 +1,6 @@
+# dato un url esamina il JSON e crea un quiz
+# dove poni una domanda con le relative opzioni
+# stampare relative risposta se è corretta o meno
 import requests
 URL = "https://raw.githubusercontent.com/arditsulceteaching/hosted_files/main/geo.json"
 
