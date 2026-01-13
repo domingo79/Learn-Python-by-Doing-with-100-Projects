@@ -5,12 +5,22 @@ import os
 
 # percorso principale
 script_dir = os.path.dirname(os.path.abspath(__file__))
-# percorso file target
-target_file = os.path.join(script_dir, "snowwhite.txt")
+# percorso file target input per la lettura e target output per la scrittura
+target_file_input = os.path.join(script_dir, "snowwhite.txt")
+target_file_output = os.path.join(script_dir, "snowwhite_corrected.txt")
 
-with open(target_file) as file:
+with open(target_file_input) as file:
     text = file.read()  # legge tutto il file e crea una stringa
 
-words = text.split(" ")
-reversed_words = [x[::-1] for x in words]
-print(reversed_words)
+# splitto al punto(. )
+sentence = text.split(". ")
+
+# trasformo la prima lettera di ogni frase in maiuscola
+correct_sentence = [x.capitalize() for x in sentence]
+
+# aggiungo il . a fine frase e unisco in una sola stringa
+testo_corretto = ". ".join(correct_sentence)
+
+# provvedo alla scrittura del file `snowwhite_corrected.txt` con il testo_corretto
+with open(target_file_output, "w") as file:
+    file.write(testo_corretto)
