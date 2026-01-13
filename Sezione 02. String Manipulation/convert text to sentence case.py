@@ -1,6 +1,8 @@
-# Crea un programma che legga il testo di un file di testo, lo converta in "Sentence case"
+# Crea un programma che legga il testo da un file di testo, lo converta in "Sentence"
 # e salvi il risultato in un nuovo file di testo.
-# Il programma dovrebbe rendere maiuscola la prima lettera di ogni frase e salvare il risultato in un nuovo file snowwhite_corrected.txt.
+# Il programma dovrebbe:
+# - rendere maiuscola la prima lettera di ogni frase e successivamente
+# - salvare il risultato in un nuovo file snowwhite_corrected.txt.
 import os
 
 # percorso principale
