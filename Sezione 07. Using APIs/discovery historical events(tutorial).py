@@ -3,15 +3,16 @@ import calendar
 from datetime import datetime
 
 anno = datetime.now().year
-mese = datetime.now().month
-# monthrange restituisce (giorno_settimana_inizio, numero_giorni_nel_mese)
-_, giorni_nel_mese = calendar.monthrange(anno, mese)
+mese = None
+
 
 while True:
     try:
         mounth = int(input("Inserisci mese (1-12): "))
 
         if 1 <= mounth <= 12:
+            # popoliamo il mese per un corretto calcolo dei giorni
+            mese = mounth
             break  # Esci dal ciclo se il numero è corretto
         else:
             print("❌ Errore: il mese deve essere compreso tra 1 e 12.")
@@ -19,6 +20,9 @@ while True:
     except ValueError:
         print("⚠️  Attenzione: devi inserire un numero, non lettere!")
 
+# calcolo i giorni del mese inserito dall'utente
+# monthrange restituisce (giorno_settimana_inizio, numero_giorni_nel_mese)
+_, giorni_nel_mese = calendar.monthrange(anno, mese)
 
 while True:
     try:
