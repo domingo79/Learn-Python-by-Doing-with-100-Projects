@@ -2,44 +2,34 @@ import requests
 import calendar
 from datetime import datetime
 
+
+def chiedi_data(message, minimo, massimo):
+    while True:
+        try:
+            valore = int(input(f"{message}: "))
+            if minimo <= valore <= massimo:
+                return valore
+                break
+            else:
+                print(
+                    f"❌ ERRORE: inserisci un numero compreso tra {minimo} e {massimo}.")
+        except ValueError:
+            print("⚠️  Attenzione: devi inserire un numero, non lettere!")
+
+
 anno = datetime.now().year
-mese = None
+mese = chiedi_data("Inserisci un mese in formato (1-12)", minimo=1, massimo=12)
 
-
-while True:
-    try:
-        mounth = int(input("Inserisci mese (1-12): "))
-
-        if 1 <= mounth <= 12:
-            # popoliamo il mese per un corretto calcolo dei giorni
-            mese = mounth
-            break  # Esci dal ciclo se il numero è corretto
-        else:
-            print("❌ Errore: il mese deve essere compreso tra 1 e 12.")
-
-    except ValueError:
-        print("⚠️  Attenzione: devi inserire un numero, non lettere!")
-
-# calcolo i giorni del mese inserito dall'utente
+# calcolo i giorni del mese dopo l'inserimento del mese da parte dell'utente
 # monthrange restituisce (giorno_settimana_inizio, numero_giorni_nel_mese)
 _, giorni_nel_mese = calendar.monthrange(anno, mese)
 
-while True:
-    try:
-        day = int(input(f"Inserisci giorno (1-{giorni_nel_mese}): "))
+giorno = chiedi_data(
+    f"Inserisci il giorno in formato ({1}-{giorni_nel_mese})", minimo=1, massimo=giorni_nel_mese)
 
-        if 1 <= day <= giorni_nel_mese:
-            break  # Esci dal ciclo se il numero è corretto
-        else:
-            print(
-                f"❌ Errore: il giorno deve essere compreso tra 1 e {giorni_nel_mese}.")
-
-    except ValueError:
-        print("⚠️  Attenzione: devi inserire un numero, non lettere!")
-
-
-url_specific_day = f"https://history.muffinlabs.com/date/{mounth}/{day}"
-url_today = f"https://history.muffinlabs.com/date"
+# da eventi specifici in base al mese/giorno
+url_specific_day = f"https://history.muffinlabs.com/date/{mese}/{giorno}"
+# url_today = f"https://history.muffinlabs.com/date" → da eventi today
 
 try:
     response = requests.get(url_specific_day, timeout=10)
@@ -49,12 +39,19 @@ except requests.exceptions.RequestException as e:
     print(f"ERRORE durante il recupero dei dati: {e}")
     exit()  # evita una reazione a catena di errori.
 
-events = data["data"]["Events"]
+# il nostro paracadute:
+# "Cerca questa chiave. Se la trovi, dammi il suo valore. Se NON la trovi, non dare errore,
+# ma dammi quello che c'è dopo la virgola."
+events = data.get("data", {}).get("Events", [])
+
+# stampa risultati
+print(f"\n--- Eventi storici del {giorno}/{mese} ---\n")
 for event in events:
-    print(f"Anno: {event['year']}")
-    print(f"Descrizione: {event['text']}")
-    print("Link Utili:")
-    for link in event['links']:
-        print(f"\tTitolo: {link['title']}")
-        print(f"\tLink: {link['link']}")
-    print("\n")
+    print(f" 📅 Anno: {event['year']}")
+    print(f" 📝 {event['text']}")
+
+    # mostriamo i titoli dei link in modo più compatto
+    links = [link['title'] for link in event.get('links', [])]
+    if links:
+        print(f" 📎Approfondisci: {', '.join(links)}")
+    print("-" * 30)
