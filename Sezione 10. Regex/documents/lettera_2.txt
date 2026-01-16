@@ -1,0 +1,4 @@
+[2026-01-16 14:22:01] INFO: Avvio procedura di backup settimanale.
+[2026-01-16 14:22:05] ERROR: Spazio su disco insufficiente sul server 02.
+[2026-01-16 14:22:05] WARNING: Notifica inviata all'amministratore di sistema: admin_backup@provider.net.
+[2026-01-16 14:23:10] INFO: Tentativo di riconnessione tramite mail-relay-77@internal-network.org riuscito.
