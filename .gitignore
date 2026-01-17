@@ -1,8 +1,13 @@
 # Ambiente Virtuale
 .venv/
+venv
+ENV/
 
 # Chiavi di accesso e variabili d'ambiente
 .env
+
+# VS Code - Impostazioni locali e estensioni
+.vscode
 
 # Python cache
 __pycache__/
