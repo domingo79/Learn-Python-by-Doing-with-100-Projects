@@ -1,10 +1,16 @@
 # Ambiente Virtuale
 .venv/
-venv
-ENV/
 
 # Chiavi di accesso e variabili d'ambiente
 .env
+
+# Cartelle Progetto Ignora tutto il contenuto...
+resources/*
+output/*
+
+# ...ma tieni traccia dei file .gitkeep (preserva la struttura)
+!**/resources/.gitkeep
+!**/output/.gitkeep
 
 # VS Code - Impostazioni locali e estensioni
 .vscode
