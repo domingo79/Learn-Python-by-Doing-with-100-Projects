@@ -5,8 +5,8 @@
 .env
 
 # Cartelle Progetto Ignora tutto il contenuto...
-resources/*
-output/*
+**/resources/*
+**/output/*
 
 # ...ma tieni traccia dei file .gitkeep (preserva la struttura)
 !**/resources/.gitkeep
