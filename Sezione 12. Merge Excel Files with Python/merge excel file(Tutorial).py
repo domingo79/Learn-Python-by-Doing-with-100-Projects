@@ -31,7 +31,7 @@ merged_df = pd.concat(dataframes, ignore_index=True)
 
 # costruiamo il path del file excel mergiato
 OUTPUT = os.path.join(FOLDER, 'output') 
-file_name = 'merdeg.xlsx'
+file_name = 'merged.xlsx'
 merged_path = os.path.join(OUTPUT, file_name)
 
 # ---- ESPORTIAMO IN MERGE DATA FRAME -----
