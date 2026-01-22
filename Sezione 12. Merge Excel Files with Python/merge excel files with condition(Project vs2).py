@@ -24,3 +24,4 @@ def merge_by_year(file_paths, year: str) -> pd.DataFrame:
 for year in ("2024", "2025"):
     merged = merge_by_year(file_paths, year)
     merged.to_excel(os.path.join(OUTPUT, f"{year}.xlsx"), index=False)
+    print(f"Merged data for {year} saved to '..\\output\\{year}.xlsx'.")

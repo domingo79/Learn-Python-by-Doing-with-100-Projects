@@ -34,4 +34,6 @@ output_filepath_2025 = os.path.join(OUTPUT, filename_merged_2025)
 
 # # esportiamo i file
 merged_df_2024.to_excel(output_filepath_2024, index=False)
+print("Merged data for 2024 saved to '..\\output\\2024.xlsx'.")
 merged_df_2025.to_excel(output_filepath_2025, index=False)
+print("Merged data for 2025 saved to '..\\output\\2025.xlsx'.")
