@@ -12,7 +12,7 @@ RESOURCES = os.path.join(FOLDER, 'resources')
 OUTPUT = os.path.join(FOLDER, 'output')
 # percorso dei singoli file
 doc_path_1, doc_path_2 = [os.path.join(
-    RESOURCES, f) for f in os.listdir(RESOURCES)]
+    RESOURCES, f) for f in os.listdir(RESOURCES) if f.startswith("panda")]
 
 # selezioniamo i due documenti
 doc_1 = Document(doc_path_1)
