@@ -41,7 +41,7 @@ most_frequnt_word = max(word_frequency, key=word_frequency.get)
 
 lenghts = [len(word) for word in word_list]
 avarage_word_lenght = sum(lenghts) / len(lenghts)
-avarage_sentence_lenght = words / sentences
+avarage_sentence_lenght = words / sentences if sentences > 0 else 1
 
 print("Text Analysis Results:")
 print("-" * 20)
