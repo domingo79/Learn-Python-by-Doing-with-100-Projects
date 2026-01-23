@@ -13,7 +13,7 @@ RESOURCES = os.path.join(FOLDER, 'resources')
 OUTPUT = os.path.join(FOLDER, 'output')
 
 file_paths = [os.path.join(RESOURCES, dir_name) for dir_name in os.listdir(
-    RESOURCES) if not dir_name.startswith("panda")]
+    RESOURCES) if not (dir_name.startswith("panda") or dir_name.startswith("."))]
 
 # Crea un nuovo oggetto Documento per il merge del contenuto dei file
 merged_document = Document()
