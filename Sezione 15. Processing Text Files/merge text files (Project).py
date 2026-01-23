@@ -13,14 +13,15 @@ OUTPUT = os.path.join(FOLDER, 'output')
 SAVE_FILE = os.path.join(OUTPUT, 'merge_file.txt')
 file_paths = glob(f"{RESOURCES}/*.txt")
 
-merge_file = ''
+merge_file = []
 
 for filepath in file_paths:
     with open(filepath, 'r', encoding='utf-8') as file:
         content = file.read()
-        merge_file += content
+        merge_file.append(content)
 
 with open(SAVE_FILE, 'w', encoding='utf-8') as file:
     if merge_file:
-        file.write(merge_file)
+        for sentence in merge_file:
+            file.write(f"{sentence}\n\n")
         print(f"File salvato con successo in {os.path.basename(SAVE_FILE)}")
