@@ -4,6 +4,9 @@
 # Chiavi di accesso e variabili d'ambiente
 .env
 
+# Key per Web App
+.streamlit/
+
 # Cartelle Progetto Ignora tutto il contenuto...
 **/resources/*
 **/output/*
