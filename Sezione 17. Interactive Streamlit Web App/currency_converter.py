@@ -1,6 +1,6 @@
+"""Convertitore di valuta USD ⮂ EUR"""
 import streamlit as st
 import requests
-
 
 api_key = st.secrets["EXCHANGE_RATE_KEY"]
 
@@ -25,13 +25,10 @@ input_valur = st.number_input("Inserisci l'importo da convertire")
 button = st.button("Converti", disabled=False)
 
 if button:
-    if conversion == "USD a EUR":
-        da_val = conversion[:3]
-        a_val = conversion[-3:]
-        risultato = convert(da_val, a_val, input_valur)
-    else:
-        da_val = conversion[:3]
-        a_val = conversion[-3:]
-        risultato = convert(da_val, a_val, input_valur)
-    st.success(
-        f"{input_valur} {da_val} equivalgono a: {risultato:.2f} {a_val}")
+    # Estraiamo le valute una volta sola
+    da_val = conversion[:3]
+    a_val = conversion[-3:]
+    # Chiamiamo la funzione (che ora gestisce l'URL dinamico)
+    risultato = convert(da_val, a_val, input_valur)
+    # Mostriamo il risultato usando il tuo simbolo speciale
+    st.success(f"{input_valur} {da_val} ⮂ {risultato:.2f} {a_val}")
