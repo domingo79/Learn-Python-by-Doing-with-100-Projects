@@ -1,25 +1,24 @@
+from excel_to_JSON_convert_Web_App import convert_excel_to_JSON
+import os
 import streamlit as st
-import pandas as pd  # Utile per le tabelle
 
-# Titolo dell'app
-st.title("Word Frequency Analyzer 📊")
+FOLDER = os.path.dirname(os.path.abspath(__file__))
+RESOURCES = os.path.join(FOLDER, 'resources')
+data_entri = os.path.join(RESOURCES, "europe.xlsx")
 
-# Immagina di avere il tuo dizionario word_frequency
-word_frequency = {"python": 25, "codice": 15, "studio": 10}
 
-# Visualizzare i dati come tabella
-st.subheader("Tabella delle frequenze")
-st.write(word_frequency)
+st.title(':blue[Excel] to :red[JSON converter]')
+st.write("Upload an Excel file to convert in to JSON format")
 
-# Visualizzare i dati come grafico a barre (fighissimo e immediato)
-st.subheader("Grafico a barre")
-st.bar_chart(word_frequency)
+uploaded_file = st.file_uploader("Chose an Excel file", type=["xlsx", "xls"])
 
-# Un bottone per scaricare il file
-st.download_button(
-    label="Scarica i risultati",
-    data=str(word_frequency),
-    file_name="word_frequencies.txt"
-)
+if uploaded_file is not None:
+    json_data = convert_excel_to_JSON(uploaded_file)
 
-# per avviare → streamlit run app.py
+    st.json(json_data)
+
+    st.download_button(label="Dowload JSON",
+                       data=json_data,
+                       file_name="converted.json",
+                       mime='application/json'
+                       )
