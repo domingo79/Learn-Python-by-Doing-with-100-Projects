@@ -1,11 +1,8 @@
-from excel_to_JSON_convert_Web_App import convert_excel_to_JSON
-import os
+"""
+converte un file excel in file.json
+"""
+from utility import convert_excel_to_JSON
 import streamlit as st
-
-FOLDER = os.path.dirname(os.path.abspath(__file__))
-RESOURCES = os.path.join(FOLDER, 'resources')
-data_entri = os.path.join(RESOURCES, "europe.xlsx")
-
 
 st.title(':blue[Excel] to :red[JSON converter]')
 st.write("Upload an Excel file to convert in to JSON format")
