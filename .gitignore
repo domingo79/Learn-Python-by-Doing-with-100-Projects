@@ -5,10 +5,10 @@
 .env
 
 # Ignora il file con le chiavi vere
-.streamlit/secrets.toml
+**/.streamlit/secrets.toml
 
 # NON ignorare il file di esempio
-!.streamlit/secrets.toml.example
+!**./streamlit/secrets.toml.example
 
 # Cartelle Progetto Ignora tutto il contenuto...
 **/resources/*
