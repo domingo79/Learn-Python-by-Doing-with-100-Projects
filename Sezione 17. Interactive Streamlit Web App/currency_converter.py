@@ -2,7 +2,23 @@
 import streamlit as st
 import requests
 
-api_key = st.secrets["EXCHANGE_RATE_KEY"]
+# Gestione sicura dei segreti
+try:
+    if "EXCHANGE_RATE_KEY" in st.secrets:
+        api_key = st.secrets["EXCHANGE_RATE_KEY"]
+    else:
+        raise KeyError
+except (FileNotFoundError, KeyError, RuntimeError):
+    st.error("### ⚠️ Attenzione: Configurazione Ambiente non completata")
+    st.info("""
+        Non è stato possibile individuare le credenziali API necessarie per il funzionamento dell'app.
+
+        **Per risolvere:**
+        1. Vai nella cartella `.streamlit/`
+        2. Copia il file `secrets.toml.example` e nominalo `secrets.toml`
+        3. Inserisci la tua API Key nel file appena creato.
+    """)
+    st.stop()
 
 
 def convert(da_valuta, a_valuta, importo):
