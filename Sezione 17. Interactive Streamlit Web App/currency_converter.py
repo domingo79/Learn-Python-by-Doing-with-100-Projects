@@ -2,9 +2,9 @@
 import streamlit as st
 import requests
 
-# Gestione sicura dei segreti
 try:
     if "EXCHANGE_RATE_KEY" in st.secrets:
+        # Gestione sicura dei segreti
         api_key = st.secrets["EXCHANGE_RATE_KEY"]
     else:
         raise KeyError
@@ -23,9 +23,13 @@ except (FileNotFoundError, KeyError, RuntimeError):
 
 def convert(da_valuta, a_valuta, importo):
     url = f"https://v6.exchangerate-api.com/v6/{api_key}/latest/{da_valuta}"
-
-    response = requests.get(url=url, timeout=10)
-    data = response.json()
+    try:
+        response = requests.get(url=url, timeout=10)
+        response.raise_for_status()  # Controlla che il download sia andato a buon fine
+        data = response.json()
+    except requests.exceptions.RequestException as e:
+        print(f"ERRORE durante il recupero dei dati: {e}")
+        exit()  # evita una reazione a catena di errori.
 
     tasso = data['conversion_rates'][a_valuta]
     result = importo * tasso
