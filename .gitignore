@@ -4,8 +4,11 @@
 # Chiavi di accesso e variabili d'ambiente
 .env
 
-# Key per Web App
-.streamlit/
+# Ignora il file con le chiavi vere
+.streamlit/secrets.toml
+
+# NON ignorare il file di esempio
+!.streamlit/secrets.toml.example
 
 # Cartelle Progetto Ignora tutto il contenuto...
 **/resources/*
